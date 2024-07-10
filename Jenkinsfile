@@ -12,7 +12,7 @@ pipeline {
             steps {
                 script {
                     // Build Docker image
-                    sh "docker build -t nginx-app"
+                    sh "docker build -t ${DOCKER_IMAGE} ."
                 }
             }
         }
@@ -21,11 +21,11 @@ pipeline {
             steps {
                 script {
                     // Stop and remove existing container (if any)
-                    sh "docker stop nginx-test || true"
-                    sh "docker rm nginx-test || true"
+                    sh "docker stop ${CONTAINER_NAME} || true"
+                    sh "docker rm ${CONTAINER_NAME} || true"
 
                     // Run Docker container
-                    sh "docker run -d --name nginx-test -p 89 nginx-test "
+                    sh "docker run -d --name ${CONTAINER_NAME} -p ${PORT_MAPPING} ${DOCKER_IMAGE}"
                 }
             }
         }
