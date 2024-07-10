@@ -12,7 +12,7 @@ pipeline {
             steps {
                 script {
                     // Build Docker image
-                    sh "docker build -t nginx-app
+                    sh "docker build -t nginx-app"
                 }
             }
         }
